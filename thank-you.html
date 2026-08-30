@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're All Set — Funnels by Mae</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#91AB8E; --sage-2:#A8BEA5; --sage-dark:#718A6F;
+  --ivory:#FFFCF7; --gold:#FFE48F; --gold-deep:#D4AF37;
+  --ink:#2A2420; --ink-soft:#514A42; --white:#fff;
+  --line:rgba(42,36,32,.13); --radius:22px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#829D7F;color:#20231F;font-family:"Source Sans 3",sans-serif}
+.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
+nav{position:absolute;top:0;left:0;right:0;z-index:5;padding:28px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{width:150px;display:block}
+.nav-link{font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#fff;text-decoration:none}
+.hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 110px;position:relative;overflow:hidden;background:radial-gradient(circle at 82% 18%,rgba(145,171,142,.25),transparent 30%),linear-gradient(135deg,#829D7F 0%,#829D7F 100%)}
+
+.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;position:relative;z-index:1}
+.kicker,.eyebrow{font-family:Poppins,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:13px;font-weight:700;color:#829D7F}
+h1,h2{font-family:Poppins,sans-serif;margin:0;letter-spacing:-.04em}
+h1{font-size:clamp(42px,6vw,72px);line-height:.98;max-width:760px;color:#fff}
+h1 em{font-style:normal;color:#FFE48F}
+.lede{font-size:17px;line-height:1.7;color:#fff;max-width:590px;margin:24px 0 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:14px 22px;font-family:Poppins,sans-serif;font-size:13px;font-weight:700;transition:.25s ease}
+.btn-dark{background:#20231F;color:#fff}
+.btn-dark:hover{background:#829D7F;transform:scale(1.04)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.card{background:rgba(255,255,255,.62);border:1px solid rgba(32,35,31,.08);border-radius:28px;padding:44px;box-shadow:0 25px 70px rgba(32,35,31,.09);backdrop-filter:blur(8px)}
+.check{display:flex;gap:14px;align-items:flex-start;margin-top:22px}
+.check-icon{width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:#829D7F;color:white;display:grid;place-items:center;font-family:Poppins,sans-serif;font-weight:700}
+.check strong{font-family:Poppins,sans-serif;font-size:14px;color:#829D7F}
+.check span{display:block;color:#20231F;font-size:14px;line-height:1.55;margin-top:3px}
+.footer{position:relative;background:#829D7F;padding:35px 0;color:white;z-index:2}
+.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:13px}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){
+.wrap{width:min(100% - 32px,600px)}
+.grid{grid-template-columns:1fr;gap:28px}
+.hero{padding:125px 0 100px}
+
+h1{font-size:clamp(40px,11vw,58px)}
+.card{padding:30px}
+.footer-inner{flex-direction:column;align-items:flex-start}
+nav{padding:20px 0}
+}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap nav-inner">
+    <a href="index.html"><img class="logo" src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/FBM_-_Assets_rsfqxj.png" alt="Funnels by Mae"></a>
+    <a class="nav-link" href="index.html">Back to Funnels by Mae ↗</a>
+  </div>
+</nav>
+
+<main class="hero">
+  <div class="wrap grid">
+    <section class="reveal">
+      <div class="kicker">You're all set</div>
+      <h1 style="margin-top:16px">YOUR STRATEGY CALL IS <em>BOOKED.</em></h1>
+      <p class="lede">Thanks for taking the first step. I'm looking forward to learning more about your business, your goals, and where your funnel can work harder for you.</p>
+      <div class="actions">
+        <a class="btn btn-dark" href="index.html">Back to Funnels by Mae ↗</a>
+      </div>
+    </section>
+
+    <aside class="card reveal">
+      <div class="eyebrow">What happens next</div>
+      <div class="check">
+        <div class="check-icon">1</div>
+        <div><strong>Check your inbox</strong><span>Look for the Google Calendar confirmation and make sure the appointment details are correct.</span></div>
+      </div>
+      <div class="check">
+        <div class="check-icon">2</div>
+        <div><strong>Add the call to your calendar</strong><span>Save the appointment so you have the time and meeting details ready.</span></div>
+      </div>
+      <div class="check">
+        <div class="check-icon">3</div>
+        <div><strong>Come ready to talk funnels</strong><span>We'll look at your current setup, goals, and the biggest opportunity to improve your client journey.</span></div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>© 2026 Funnels by Mae</span>
+    <span>Strategy · Design · Automation</span>
+  </div>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting) e.target.classList.add('show');
+  else e.target.classList.remove('show');
+}),{threshold:.12});
+reveals.forEach(x=>io.observe(x));
+</script>
+</body>
+</html>
