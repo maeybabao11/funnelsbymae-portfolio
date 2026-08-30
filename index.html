@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mae Gutierrez — Funnels by Mae</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sage:#91AB8E; --sage-2:#A8BEA5; --sage-dark:#718A6F;
+  --ivory:#FFFCF7; --gold:#FFE48F; --gold-deep:#D4AF37;
+  --ink:#2A2420; --ink-soft:#514A42; --white:#fff;
+  --line:rgba(42,36,32,.13); --radius:22px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ivory);color:var(--ink);font-family:'Source Sans 3',sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit}
+.wrap{width:min(1180px,90vw);margin:auto}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#ebe1b9;opacity:1}
+h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.05;letter-spacing:-.035em;margin:0}
+p{line-height:1.65;margin:0;font-size:15px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;transition:.25s ease}
+.btn-gold{background:var(--gold);color:var(--ink);box-shadow:0 10px 30px rgba(212,175,55,.22)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 15px 36px rgba(212,175,55,.3)}
+.btn-dark{background:var(--ink);color:var(--ivory)}
+.btn-outline{border:1px solid rgba(42,36,32,.28)}
+.btn-outline:hover{background:var(--ink);color:var(--ivory)}
+.cta .btn-dark:hover{background:#829D7F;transform:scale(1.06);box-shadow:0 14px 30px rgba(130,157,127,.28)}
+/* NAV */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1160px,92vw);z-index:50;display:flex;align-items:center;justify-content:space-between;padding:8px 10px 8px 18px;background:rgba(145,171,142,.94);border:1px solid rgba(255,255,255,.22);border-radius:999px;backdrop-filter:blur(16px);box-shadow:0 12px 35px rgba(42,36,32,.12)}
+.logo img{height:48px;width:auto}
+.navlinks{display:flex;gap:28px;color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.navlinks a{opacity:.78}.navlinks a:hover{opacity:1}
+.nav .btn{padding:11px 18px;font-size:11px}
+.menu{display:none;background:none;border:0;color:#fff;font-size:22px}
+/* HERO */
+.hero{min-height:100vh;padding:150px 0 80px;background:
+ radial-gradient(circle at 80% 20%,rgba(255,228,143,.35),transparent 24%),
+ linear-gradient(145deg,#7E997B 0%,var(--sage) 55%,#DDE5D9 100%);overflow:hidden;position:relative}
+.hero:after{content:"";position:absolute;inset:auto -10% -22% -10%;height:38%;background:transparent;border-radius:50% 50% 0 0/35% 35% 0 0}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:.95fr 1.05fr;gap:58px;align-items:center}
+.hero-copy{padding-bottom:35px}
+.hero-kicker{display:flex;gap:10px;flex-wrap:wrap;color:#ebe1b9;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:1;margin-bottom:22px}
+.hero h1{font-size:clamp(44px,4.6vw,60px);line-height:1.02;letter-spacing:-.035em;text-transform:uppercase;max-width:680px;color:#fff}
+.hero h1 em{font-style:normal;color:var(--gold);display:inline-block}
+.hero-lede{font-size:17px;max-width:570px;color:#263024;margin-top:28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.hero-note{display:flex;gap:18px;margin-top:30px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:700;opacity:.68}
+.hero-note span:before{content:"●";margin-right:7px;color:var(--gold-deep)}
+.hero-visual{position:relative}
+.hero-card{background:rgba(255,252,247,.38);border:1px solid rgba(255,255,255,.42);border-radius:30px;padding:16px;box-shadow:0 35px 70px rgba(42,36,32,.25);transform:rotate(2deg)}
+.hero-card img{border-radius:20px;width:100%;height:auto}
+.floating{position:absolute;background:var(--ivory);border-radius:18px;padding:14px 16px;box-shadow:0 18px 40px rgba(42,36,32,.18);font-size:12px;font-weight:700;letter-spacing:.04em}
+.floating.one{left:-35px;bottom:50px}.floating.two{right:-25px;top:45px;background:var(--gold)}
+/* TICKER */
+.ticker{overflow:hidden;background:var(--ink);color:var(--ivory);padding:18px 0}
+.ticker-track{display:flex;width:max-content;animation:scroll 28s linear infinite}
+.ticker span{font-family:Poppins,sans-serif;font-weight:700;text-transform:uppercase;font-size:18px;letter-spacing:.01em;padding:0 24px;white-space:nowrap}
+.ticker i{font-style:normal;color:var(--gold)}
+@keyframes scroll{to{transform:translateX(-50%)}}
+/* INTRO */
+.intro{padding:105px 0}
+.intro-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.intro h2{font-size:clamp(38px,5vw,64px);max-width:850px}
+.intro-copy{font-size:16px;color:var(--ink-soft);max-width:610px;margin-top:24px}.intro-visual{display:flex;flex-direction:column;gap:18px}.intro-image{border-radius:26px;overflow:hidden;box-shadow:0 24px 55px rgba(42,36,32,.14);background:#f0ece5}.intro-image img{width:100%;height:100%;object-fit:cover;object-position:center}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:60px}
+.stat{padding:28px 18px;border-right:1px solid var(--line)}
+.stat:last-child{border:0}.stat strong{display:block;font:800 38px Poppins;color:var(--sage-dark)}.stat span{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+/* SECTION */
+.section{padding:105px 0}.sage{background:var(--sage)}.dark{background:var(--ink);color:var(--ivory)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px}
+.section-head h2{font-size:clamp(38px,5vw,64px);max-width:720px}
+.section-head p{max-width:650px;color:var(--ink-soft);margin-top:18px}
+.sage .section-head p{color:#263024}.dark .section-head p{color:rgba(255,252,247,.65)}
+/* CAPABILITIES */
+.cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(42,36,32,.18);border-radius:24px;overflow:hidden}
+.cap{background:rgba(255,255,255,.35);padding:30px;min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
+.cap:nth-child(2n){background:rgba(255,255,255,.22)}
+.cap-num{font:700 12px Poppins;color:#ebe1b9;opacity:1}.cap h3{font-size:25px;margin:45px 0 12px;color:#fff}.cap p{font-size:14px;color:#334033}.cap-arrow{font-size:28px;align-self:flex-end}
+/* WORK */
+.work{padding:105px 0}.work .eyebrow{color:#829D7F}
+.work-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.work-card{position:relative;overflow:hidden;border-radius:24px;background:#e8e2d8;cursor:pointer;min-height:520px}
+.work-card:nth-child(n){grid-column:span 4}
+.work-card{height:520px;min-height:0;transition:transform .35s ease,box-shadow .35s ease}
+.work-card img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .8s ease}
+.work-card:hover{transform:scale(1.025);box-shadow:0 24px 50px rgba(42,36,32,.16);z-index:2}
+.work-card:hover img{transform:scale(1.035)}
+.work-overlay{position:absolute;left:16px;right:16px;bottom:16px;background:rgba(42,36,32,.88);color:#fff;border-radius:18px;padding:16px 18px;display:flex;justify-content:space-between;align-items:end}
+.work-overlay small{display:block;color:var(--gold);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:5px}
+.work-overlay h3{font-size:19px;letter-spacing:-.02em}
+/* PROCESS */
+.process{background:#f3eee6}.process .eyebrow{color:#829D7F}
+.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.process-card{background:var(--ivory);border:1px solid var(--line);border-radius:24px;padding:30px;min-height:310px;transition:transform .35s ease,box-shadow .35s ease}
+.process-card:hover{transform:scale(1.025);box-shadow:0 20px 42px rgba(42,36,32,.12);z-index:2}
+.process-card .num{font:800 13px Poppins;color:var(--sage-dark)}
+.process-card h3{font-size:28px;margin:75px 0 14px}.process-card p{color:var(--ink-soft);font-size:15px}
+/* TOOLKIT */
+.tool-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px;align-items:center}
+.tool-image{border-radius:26px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.25)}
+.tool-image img{width:100%}
+.tool-copy h2{font-size:clamp(40px,5vw,62px);color:#fff}
+.tool-copy>p{color:#263024;font-size:17px;max-width:580px;margin:22px 0 35px}
+.tools{display:flex;flex-wrap:wrap;gap:10px}
+.tool{padding:13px 17px;border-radius:999px;background:rgba(255,255,255,.52);border:1px solid rgba(42,36,32,.14);font-weight:700;font-size:13px;transition:transform .3s ease,box-shadow .3s ease}
+.tool:hover{transform:scale(1.08);box-shadow:0 10px 22px rgba(42,36,32,.12)}
+/* ABOUT */
+.about .eyebrow{color:#829D7F}.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:70px;align-items:center}
+.about-photo{border-radius:26px;overflow:hidden}.about-photo img{width:100%}
+.about h2{font-size:clamp(40px,5vw,64px);color:#829D7F}.about-copy{color:var(--ink-soft);font-size:16px}.about-copy p+p{margin-top:18px}
+.quote{margin-top:28px;padding:22px;border-left:3px solid var(--gold-deep);background:rgba(255,255,255,.55);font:600 18px Poppins;color:#829D7F;border-radius:0 16px 16px 0}
+/* CTA */
+.cta{padding:105px 0;background:var(--gold)}.cta .eyebrow{color:#829D7F}
+.cta-inner{display:flex;justify-content:space-between;align-items:end;gap:50px}.cta h2{font-size:clamp(48px,7vw,88px);max-width:850px}.cta p{max-width:430px;margin-top:18px;font-size:17px}
+/* FOOTER */
+footer{background:var(--ink);color:var(--ivory);padding:60px 0 25px}.footer-top{display:flex;justify-content:space-between;align-items:center;gap:30px;padding-bottom:45px;border-bottom:1px solid rgba(255,255,255,.12)}footer img{height:58px;width:auto}.footer-tag{font:600 13px Poppins;text-transform:uppercase;letter-spacing:.12em;opacity:.7}.footer-bottom{display:flex;justify-content:space-between;padding-top:22px;font-size:12px;opacity:.45}
+/* LIGHTBOX */
+.lightbox{position:fixed;inset:0;z-index:100;background:rgba(20,18,15,.92);display:none;align-items:center;justify-content:center;padding:30px}
+.lightbox.open{display:flex}.lightbox img{max-width:92vw;max-height:90vh;border-radius:14px}.close{position:absolute;right:28px;top:18px;color:#fff;font-size:40px;cursor:pointer}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:900px){
+ .navlinks{display:none}.menu{display:block}.nav .btn{display:none}
+ .hero-grid,.intro-grid,.tool-grid,.about-grid{grid-template-columns:1fr;gap:42px}
+ .intro-visual{max-width:680px}
+ .hero{padding-top:125px}.hero h1{font-size:clamp(38px,8vw,54px);line-height:1.03;max-width:680px}
+ .hero-visual{max-width:620px;margin:auto}.floating.one{left:-10px}.floating.two{right:-8px}
+ .stat-row{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+ .cap-grid{grid-template-columns:repeat(2,1fr)}
+ .work-card,.work-card:nth-child(n){grid-column:span 12;height:430px;min-height:0}
+ .process-grid{grid-template-columns:1fr}
+ .section-head,.cta-inner,.footer-top,.footer-bottom{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:560px){
+ .wrap{width:90vw}.section,.work,.intro,.cta{padding:78px 0}
+ .hero{padding-bottom:50px}.hero:after{height:18%}
+ .hero-card{transform:none}.floating{font-size:10px}.hero-lede{font-size:17px}
+ .stat strong{font-size:30px}.cap-grid{grid-template-columns:1fr}
+ .work-card,.work-card:nth-child(n){height:360px;min-height:0}.work-overlay h3{font-size:16px}
+ .ticker span{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ticker-track{animation:none}.reveal{transition:none}.work-card,.process-card,.tool,.cta .btn-dark{transition:none}.work-card:hover,.process-card:hover,.tool:hover,.cta .btn-dark:hover{transform:none}}
+/* AI CHAT WIDGET */
+.ai-chat{position:fixed;right:24px;bottom:24px;z-index:80;font-family:'Source Sans 3',sans-serif}
+.ai-chat-panel{position:absolute;right:0;bottom:76px;width:min(380px,calc(100vw - 32px));overflow:hidden;background:var(--ivory);border:1px solid rgba(42,36,32,.12);border-radius:24px;box-shadow:0 24px 70px rgba(42,36,32,.22);opacity:0;visibility:hidden;transform:translateY(14px) scale(.96);transform-origin:bottom right;transition:opacity .25s ease,transform .25s ease,visibility .25s ease}
+.ai-chat.is-open .ai-chat-panel{opacity:1;visibility:visible;transform:none}
+.ai-chat-head{display:flex;align-items:center;gap:12px;padding:17px 18px;background:var(--sage);color:#fff}
+.ai-chat-icon{display:grid;place-items:center;flex:0 0 40px;width:40px;height:40px;border-radius:13px;background:var(--gold);color:var(--ink)}
+.ai-chat-icon svg{width:22px;height:22px}
+.ai-chat-title{font:700 15px Poppins;letter-spacing:-.02em}
+.ai-chat-subtitle{margin-top:2px;color:rgba(255,255,255,.78);font-size:12px}
+.ai-chat-close{margin-left:auto;border:0;background:transparent;color:#fff;font-size:25px;line-height:1;cursor:pointer;opacity:.8;transition:opacity .2s ease,transform .2s ease}
+.ai-chat-close:hover{opacity:1;transform:rotate(90deg)}
+.ai-chat-body{padding:18px}
+.ai-chat-message{display:flex;gap:9px;align-items:flex-start;margin-bottom:16px;color:var(--ink-soft);font-size:14px;line-height:1.5;animation:ai-message-in .3s ease both}
+.ai-chat-message.bot:before{content:"✦";display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:8px;background:var(--gold);color:var(--ink);font-size:12px}
+.ai-chat-messages{max-height:210px;overflow-y:auto;padding-right:3px}
+.ai-chat-message.user{justify-content:flex-end;margin-left:28px;padding:9px 12px;border-radius:15px 15px 3px 15px;background:var(--sage);color:#fff}
+.ai-chat-message.user:before{display:none}
+.ai-chat-suggestions{display:grid;gap:8px;margin:0 0 16px}
+.ai-chat-suggestion{padding:10px 12px;border:1px solid rgba(113,138,111,.45);border-radius:12px;background:transparent;color:var(--sage-dark);font-size:13px;text-align:left;cursor:pointer;transition:background .2s ease,color .2s ease,transform .2s ease}
+.ai-chat-suggestion:hover{background:var(--sage);color:#fff;transform:translateX(3px)}
+.ai-chat-form{display:flex;gap:8px;padding-top:14px;border-top:1px solid var(--line)}
+.ai-chat-input{min-width:0;flex:1;padding:11px 13px;border:1px solid rgba(42,36,32,.18);border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:14px;outline:none}
+.ai-chat-input:focus{border-color:var(--sage-dark);box-shadow:0 0 0 3px rgba(145,171,142,.2)}
+.ai-chat-send{display:grid;place-items:center;width:44px;border:0;border-radius:12px;background:var(--ink);color:var(--gold);cursor:pointer;transition:background .2s ease,transform .2s ease}
+.ai-chat-send:hover{background:var(--sage-dark);transform:translateY(-2px)}
+.ai-chat-send svg{width:18px;height:18px}
+.ai-chat-toggle{display:grid;place-items:center;width:58px;height:58px;border:0;border-radius:50%;background:var(--gold);color:var(--ink);box-shadow:0 14px 32px rgba(42,36,32,.2);cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.ai-chat-toggle:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 18px 38px rgba(42,36,32,.27);background:#ffeaa9}
+.ai-chat-toggle svg{width:25px;height:25px;transition:transform .25s ease}
+.ai-chat.is-open .ai-chat-toggle svg{transform:rotate(90deg)}
+@keyframes ai-message-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:560px){
+ .ai-chat{right:16px;bottom:16px}
+ .ai-chat-panel{right:0;bottom:70px;width:calc(100vw - 32px);border-radius:20px}
+ .ai-chat-toggle{width:54px;height:54px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ai-chat-panel,.ai-chat-close,.ai-chat-suggestion,.ai-chat-send,.ai-chat-toggle,.ai-chat-toggle svg{transition:none}
+ .ai-chat-message{animation:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#top"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/FBM_-_Assets_rsfqxj.png" alt="Funnels by Mae"></a>
+  <div class="navlinks">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a>
+  </div>
+  <a class="btn btn-gold" href="book-a-call.html">Book a Call ↗</a>
+  <button class="menu" aria-label="Menu">☰</button>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-kicker">Funnel Strategist &amp; Automation Specialist</div>
+      <h1>FUNNEL SYSTEMS THAT TURN LEADS INTO <em>BOOKED CLIENTS</em></h1>
+      <p class="hero-lede">I design conversion-focused funnel systems for coaches — combining strategy, copy, design, and automation into one connected client journey.</p>
+      <div class="hero-actions"><a class="btn btn-gold" href="book-a-call.html">Build my funnel ↗</a><a class="btn btn-outline" href="#work">Explore the work</a></div>
+      <div class="hero-note" style="color:#fff"><span>Strategy</span><span>Design</span><span>Automation</span></div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108622/FunnelsByM_Wireframe_9_mi7oji.png" alt="Mae Gutierrez, funnel strategist"></div>
+      <div class="floating one">7+ YEARS · DIGITAL & TECH</div>
+      <div class="floating two">FUNNEL → LEAD → BOOKED</div>
+    </div>
+  </div>
+</header>
+
+<div class="ticker"><div class="ticker-track">
+  <span>Funnel Strategy <i>●</i></span><span>Conversion Design <i>●</i></span><span>Automation Systems <i>●</i></span><span>Booked Clients <i>●</i></span>
+  <span>Funnel Strategy <i>●</i></span><span>Conversion Design <i>●</i></span><span>Automation Systems <i>●</i></span><span>Booked Clients <i>●</i></span>
+</div></div>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="intro-grid reveal">
+      <div class="intro-visual">
+        <div class="eyebrow">The big picture</div>
+        <div class="intro-image"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786368297/FunnelsByM_Wireframe_7_hn2d8g.png" alt="Funnels by Mae funnel and website designs"></div>
+      </div>
+      <div>
+        <h2>A good funnel isn't just a page. <span style="color:var(--sage-dark)">It's a system.</span></h2>
+        <p class="intro-copy">Your landing page, offer, forms, CRM, follow-up, booking flow, and automations should work together. I build the connective tissue between them — so your marketing has a clear path from first click to qualified lead to booked call.</p>
+      </div>
+    </div>
+    <div class="stat-row reveal">
+      <div class="stat"><strong>7+</strong><span>Years in tech & digital</span></div>
+      <div class="stat"><strong>4</strong><span>Funnel & web platforms</span></div>
+      <div class="stat"><strong>3</strong><span>Core specialties</span></div>
+      <div class="stat"><strong>1</strong><span>Connected system</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section sage" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">What I do</div><h2>Build the pieces. Connect the journey.</h2><p>From strategy to implementation, every piece is designed around the same conversion goal.</p></div>
+    </div>
+    <div class="cap-grid reveal">
+      <article class="cap"><div class="cap-num">01</div><div><h3>Funnel Strategy</h3><p>Map the offer, audience, journey, CTA, and conversion path before a pixel gets placed.</p></div><div class="cap-arrow">↗</div></article>
+      <article class="cap"><div class="cap-num">02</div><div><h3>Design & Build</h3><p>Landing pages, opt-ins, sales pages, thank-you pages, and booking flows built for clarity and action.</p></div><div class="cap-arrow">↗</div></article>
+      <article class="cap"><div class="cap-num">03</div><div><h3>Automation</h3><p>Lead routing, follow-ups, CRM workflows, notifications, and the behind-the-scenes handoffs.</p></div><div class="cap-arrow">↗</div></article>
+      <article class="cap"><div class="cap-num">04</div><div><h3>Web & Systems</h3><p>Responsive digital experiences that connect your marketing stack instead of living in a silo.</p></div><div class="cap-arrow">↗</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Selected work</div><h2>Funnels built to move people.</h2><p>Click a project to view it larger. Hover on desktop to preview the page design.</p></div>
+    </div>
+    <div class="work-grid reveal">
+      <article class="work-card" data-img="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108621/screencapture-funnelsbymae-systeme-io-4103cca4-2026-08-07-19_22_17_fbicty.png">
+        <img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108621/screencapture-funnelsbymae-systeme-io-4103cca4-2026-08-07-19_22_17_fbicty.png" alt="Coach lead generation landing page">
+        <div class="work-overlay"><div><small>Landing Page</small><h3>Coach Lead Generation</h3></div><b>↗</b></div>
+      </article>
+      <article class="work-card" data-img="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108621/screencapture-oh-go-2-systeme-io-cf47b5da-26b6c6c8-2026-08-07-19_22_35_wgqm3u.png">
+        <img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108621/screencapture-oh-go-2-systeme-io-cf47b5da-26b6c6c8-2026-08-07-19_22_35_wgqm3u.png" alt="Private masterclass booking page">
+        <div class="work-overlay"><div><small>Booking Funnel</small><h3>Private Masterclass</h3></div><b>↗</b></div>
+      </article>
+      <article class="work-card" data-img="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/screencapture-oh-go-2-systeme-io-20c435d4-2026-08-07-19_24_59_aner1g.png">
+        <img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/screencapture-oh-go-2-systeme-io-20c435d4-2026-08-07-19_24_59_aner1g.png" alt="Program opt-in and booking funnel">
+        <div class="work-overlay"><div><small>Booking Funnel</small><h3>Program Opt-in & Booking</h3></div><b>↗</b></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal"><div><div class="eyebrow">How I work</div><h2>Simple on the surface. Strategic underneath.</h2></div><p>No unnecessary complexity. Just a clear process that gets the funnel from idea to working system.</p></div>
+    <div class="process-grid reveal">
+      <article class="process-card"><div class="num">01 / DISCOVER</div><h3>Start with the offer.</h3><p>Understand the audience, offer, customer journey, conversion goal, and what needs to happen after the click.</p></article>
+      <article class="process-card"><div class="num">02 / BUILD</div><h3>Turn strategy into pages.</h3><p>Create the hierarchy, content flow, design, forms, CTAs, CRM connections, and automation logic.</p></article>
+      <article class="process-card"><div class="num">03 / CONNECT</div><h3>Make the system work.</h3><p>Test the journey end-to-end, remove friction, connect the handoffs, and make sure the next step is obvious.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section sage" id="tools">
+  <div class="wrap tool-grid">
+    <div class="tool-image reveal"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108618/Gemini_Generated_Image_y1pas5y1pas5y1pa_sti8sm.png" alt="Funnels by Mae toolkit"></div>
+    <div class="tool-copy reveal">
+      <div class="eyebrow">The toolkit</div><h2>Enough tools to build. Not enough to create chaos.</h2>
+      <p>I work across a focused stack so the technology supports the strategy — not the other way around.</p>
+      <div class="tools"><span class="tool">GoHighLevel</span><span class="tool">Systeme.io</span><span class="tool">n8n</span><span class="tool">Zapier</span><span class="tool">Make</span><span class="tool">Figma</span><span class="tool">Canva</span><span class="tool">WordPress</span><span class="tool">Shopify</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo reveal"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108697/FunnelsByM_Wireframe_5_kmuykh.png" alt="Mae Gutierrez"></div>
+    <div class="reveal">
+      <div class="eyebrow">About Mae</div><h2 style="margin-top:14px">The strategist behind Funnels by Mae.</h2>
+      <div class="about-copy" style="margin-top:24px">
+        <p>I'm Mae Gutierrez, a funnel strategist and automation specialist helping coaches turn scattered marketing efforts into a clear, conversion-focused client journey.</p>
+        <p>My background combines web design, funnel building, technology, and automation. After working across WordPress, Shopify, GoHighLevel, and Systeme.io, I realized that a good-looking page alone isn't enough.</p>
+        <p>The real value comes from connecting strategy, messaging, pages, follow-up, and automation into one system designed to move people toward the next step.</p>
+      </div>
+      <div class="quote">“Your funnel shouldn't add more work to your business. It should quietly help your business do the work better.”</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta-inner reveal">
+    <div><div class="eyebrow">Ready when you are</div><h2>Let's build the system behind your next client.</h2></div>
+    <div><p>Tell me what you're selling, where leads are getting stuck, and what you want the funnel to do.</p><a class="btn btn-dark" style="margin-top:24px" href="book-a-call.html">Book a call ↗</a></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top"><img src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/FBM_-_Assets_rsfqxj.png" alt="Funnels by Mae"><div class="footer-tag">Strategy · Design · Automation</div><a class="btn btn-gold" href="book-a-call.html">Book a Call</a></div>
+    <div class="footer-bottom"><span>© 2026 Funnels by Mae</span><span>Funnel systems for coaches & service businesses</span></div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><div class="close" id="close">×</div><img id="lightboxImg" alt="Selected funnel project"></div>
+
+<aside class="ai-chat" id="aiChat" aria-label="FunnelsByMae AI Assistant">
+  <section class="ai-chat-panel" aria-label="Chat panel">
+    <header class="ai-chat-head">
+      <div class="ai-chat-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 13.8 8.2 19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></svg>
+      </div>
+      <div><div class="ai-chat-title">FunnelsByMae AI Assistant</div><div class="ai-chat-subtitle">Ask me about funnels &amp; automation</div></div>
+      <button class="ai-chat-close" id="aiChatClose" type="button" aria-label="Close chat">&times;</button>
+    </header>
+    <div class="ai-chat-body">
+      <div class="ai-chat-messages" id="aiChatMessages">
+        <div class="ai-chat-message bot">Hi! 👋 I'm Mae's AI assistant. I can help you learn about funnels, automation, and the systems Mae builds.</div>
+      </div>
+      <div class="ai-chat-suggestions" id="aiChatSuggestions">
+        <button class="ai-chat-suggestion" type="button">What services does Mae offer?</button>
+        <button class="ai-chat-suggestion" type="button">What tools does she use?</button>
+        <button class="ai-chat-suggestion" type="button">How can I work with Mae?</button>
+      </div>
+      <form class="ai-chat-form" id="aiChatForm">
+        <input class="ai-chat-input" id="aiChatInput" type="text" placeholder="Type your question..." aria-label="Message" autocomplete="off">
+        <button class="ai-chat-send" type="submit" aria-label="Send message">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+  <button class="ai-chat-toggle" id="aiChatToggle" type="button" aria-label="Open chat" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.7 8.7 0 0 1-3.5-.7L4 20l1.5-3.8A7.3 7.3 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5a7.5 7.5 0 0 1 8 7Z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/></svg>
+  </button>
+</aside>
+
+<script>
+/* =========================
+   REVEAL ANIMATIONS
+========================= */
+
+const reveals = document.querySelectorAll('.reveal');
+
+const io = new IntersectionObserver(
+  entries => entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    } else {
+      entry.target.classList.remove('show');
+    }
+  }),
+  {
+    threshold: 0.12,
+    rootMargin: '0px 0px -8% 0px'
+  }
+);
+
+reveals.forEach(element => io.observe(element));
+
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+const lb = document.getElementById('lightbox');
+const lbi = document.getElementById('lightboxImg');
+
+document.querySelectorAll('.work-card').forEach(card => {
+  card.addEventListener('click', () => {
+    lbi.src = card.dataset.img;
+    lb.classList.add('open');
+  });
+});
+
+document.getElementById('close').onclick = () => {
+  lb.classList.remove('open');
+};
+
+lb.addEventListener('click', event => {
+  if (event.target === lb) {
+    lb.classList.remove('open');
+  }
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    lb.classList.remove('open');
+  }
+});
+
+
+/* =========================
+   AI CHAT
+========================= */
+
+const WEBHOOK_URL =
+  'https://n8n-production-95a8.up.railway.app/webhook/funnelsbymae-ai-chat';
+
+const aiChat = document.getElementById('aiChat');
+const aiToggle = document.getElementById('aiChatToggle');
+const aiClose = document.getElementById('aiChatClose');
+const aiForm = document.getElementById('aiChatForm');
+const aiInput = document.getElementById('aiChatInput');
+const aiMessages = document.getElementById('aiChatMessages');
+const aiSuggestions = document.getElementById('aiChatSuggestions');
+const aiSendButton = aiForm.querySelector('.ai-chat-send');
+
+
+/* ADD MESSAGE */
+
+function formatAiBotResponse(text) {
+  const raw = String(text ?? '').replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim();
+
+  if (!raw) {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = '';
+    return [paragraph];
+  }
+
+  const cleanText = (value) =>
+    String(value)
+      .replace(/\*\*(.+?)\*\*/g, '$1')
+      .replace(/__(.+?)__/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .trim();
+
+  const nodes = [];
+  const listItems = [];
+
+  const flushList = () => {
+    if (!listItems.length) return;
+
+    const list = document.createElement('ul');
+
+    listItems.forEach((itemText) => {
+      const item = document.createElement('li');
+      item.textContent = itemText;
+      list.appendChild(item);
+    });
+
+    nodes.push(list);
+    listItems.length = 0;
+  };
+
+  raw.split('\n').forEach((line) => {
+    const trimmed = line.trim();
+
+    if (!trimmed) return;
+
+    const bulletMatch = trimmed.match(/^([•*-]|\d+\.)\s+(.*)$/);
+
+    if (bulletMatch) {
+      listItems.push(cleanText(bulletMatch[2]));
+      return;
+    }
+
+    if (listItems.length) {
+      flushList();
+    }
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = cleanText(trimmed);
+    nodes.push(paragraph);
+  });
+
+  flushList();
+  return nodes;
+}
+
+function addAiMessage(text, type) {
+  const message = document.createElement('div');
+
+  message.className = `ai-chat-message ${type}`;
+
+  if (type === 'bot') {
+    const botContent = document.createElement('div');
+
+    formatAiBotResponse(text).forEach((node) => {
+      botContent.appendChild(node);
+    });
+
+    message.appendChild(botContent);
+  } else {
+    message.textContent = text;
+  }
+
+  aiMessages.appendChild(message);
+
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+
+  return message;
+}
+
+
+/* TYPING INDICATOR */
+
+function showTyping() {
+  const typing = document.createElement('div');
+
+  typing.className = 'ai-chat-message bot';
+  typing.id = 'aiTypingIndicator';
+  typing.textContent = 'Thinking...';
+
+  aiMessages.appendChild(typing);
+
+  aiMessages.scrollTop = aiMessages.scrollHeight;
+}
+
+function removeTyping() {
+  const typing = document.getElementById('aiTypingIndicator');
+
+  if (typing) {
+    typing.remove();
+  }
+}
+
+
+/* OPEN CHAT */
+
+function openAiChat() {
+  aiChat.classList.add('is-open');
+
+  aiToggle.setAttribute('aria-expanded', 'true');
+  aiToggle.setAttribute('aria-label', 'Close chat');
+
+  setTimeout(() => {
+    aiInput.focus();
+  }, 200);
+}
+
+
+/* CLOSE CHAT */
+
+function closeAiChat() {
+  aiChat.classList.remove('is-open');
+
+  aiToggle.setAttribute('aria-expanded', 'false');
+  aiToggle.setAttribute('aria-label', 'Open chat');
+}
+
+
+/* TOGGLE CHAT */
+
+aiToggle.onclick = () => {
+  if (aiChat.classList.contains('is-open')) {
+    closeAiChat();
+  } else {
+    openAiChat();
+  }
+};
+
+aiClose.onclick = closeAiChat;
+
+
+/* =========================
+   SEND MESSAGE TO N8N
+========================= */
+
+async function sendMessage(text) {
+
+  if (!text) return;
+
+  /* Show user message */
+
+  addAiMessage(text, 'user');
+
+  /* Clear input */
+
+  aiInput.value = '';
+
+  /* Disable while waiting */
+
+  aiInput.disabled = true;
+  aiSendButton.disabled = true;
+
+  /* Hide suggestions after conversation starts */
+
+  if (aiSuggestions) {
+    aiSuggestions.style.display = 'none';
+  }
+
+  /* Show typing */
+
+  showTyping();
+
+  try {
+
+const response = await fetch(WEBHOOK_URL, {
+  method: 'POST',
+
+  headers: {
+    'Content-Type': 'application/json'
+  },
+
+  body: JSON.stringify({
+    message: text,
+    source: 'funnelsbymae-portfolio',
+    timestamp: new Date().toISOString()
+  })
+});
+
+console.log('Response status:', response.status);
+console.log('Response headers:', [...response.headers.entries()]);
+
+const responseText = await response.text();
+
+console.log('Raw n8n response:', responseText);
+
+if (!response.ok) {
+  throw new Error(
+    `Server error: ${response.status} - ${responseText}`
+  );
+}
+
+let data = {};
+
+if (responseText && responseText.trim()) {
+  try {
+    data = JSON.parse(responseText);
+  } catch (jsonError) {
+    throw new Error(
+      `Invalid JSON response: ${responseText}`
+    );
+  }
+}
+
+console.log('n8n response:', data);
+
+    /* =========================
+       FLEXIBLE RESPONSE PARSER
+
+       This allows us to handle
+       different response formats
+       from n8n.
+    ========================= */
+
+    let reply =
+      data.reply ||
+      data.message ||
+      data.response ||
+      data.output ||
+      data.text ||
+      data.answer ||
+      (data.data && (
+        data.data.reply ||
+        data.data.message ||
+        data.data.output
+      ));
+
+
+    /* If n8n returns an array */
+
+    if (Array.isArray(data)) {
+      reply =
+        data[0]?.reply ||
+        data[0]?.message ||
+        data[0]?.response ||
+        data[0]?.output ||
+        data[0]?.text;
+    }
+
+    /* Fallback */
+
+    if (!reply) {
+      reply = 'Sorry, I couldn’t understand the response. Please try again.';
+    }
+    removeTyping();
+    addAiMessage(reply, 'bot');
+  } catch (error) {
+    console.error('AI Chat Error:', error);
+    removeTyping();
+    addAiMessage(
+      'Sorry, something went wrong while connecting to the AI assistant. Please try again.',
+      'bot'
+    );
+  } finally {
+    aiInput.disabled = false;
+    aiSendButton.disabled = false;
+    aiInput.focus();
+  }
+}
+
+
+/* =========================
+   FORM SUBMIT
+========================= */
+
+aiForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const text = aiInput.value.trim();
+  sendMessage(text);
+});
+
+
+/* =========================
+   SUGGESTION BUTTONS
+========================= */
+
+document.querySelectorAll('.ai-chat-suggestion').forEach(button => {
+  button.addEventListener('click', () => {
+    const question = button.textContent.trim();
+    sendMessage(question);
+  });
+
+});
+</script>
+</body>
+</html>
