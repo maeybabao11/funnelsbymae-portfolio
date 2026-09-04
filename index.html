@@ -426,6 +426,30 @@ document.addEventListener('keydown', event => {
 const WEBHOOK_URL =
   'https://n8n-production-95a8.up.railway.app/webhook/funnelsbymae-chat';
 
+/* One id per browser conversation, so the CRM can group all of a visitor's
+   messages into a single lead instead of a new one per message. Stored in
+   sessionStorage so it lasts for this tab/visit and resets on a fresh visit. */
+function getAiChatSessionId() {
+  const KEY = 'fbm_chat_session_id';
+  try {
+    let id = sessionStorage.getItem(KEY);
+    if (!id) {
+      id = (window.crypto && crypto.randomUUID)
+        ? crypto.randomUUID()
+        : 'sid-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+      sessionStorage.setItem(KEY, id);
+    }
+    return id;
+  } catch (e) {
+    /* sessionStorage unavailable (e.g. private browsing) - fall back to an
+       in-memory id that still stays stable for the rest of this page load. */
+    if (!window.__fbmChatSessionId) {
+      window.__fbmChatSessionId = 'sid-' + Date.now() + '-' + Math.random().toString(36).slice(2);
+    }
+    return window.__fbmChatSessionId;
+  }
+}
+
 const aiChat = document.getElementById('aiChat');
 const aiToggle = document.getElementById('aiChatToggle');
 const aiClose = document.getElementById('aiChatClose');
@@ -624,6 +648,7 @@ const response = await fetch(WEBHOOK_URL, {
 
   body: JSON.stringify({
     message: text,
+    sessionId: getAiChatSessionId(),
     source: 'funnelsbymae-portfolio',
     timestamp: new Date().toISOString()
   })
