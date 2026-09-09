@@ -224,26 +224,6 @@ footer{background:var(--ink);color:var(--ivory);padding:60px 0 25px}.footer-top{
  #intro .fade-in-up{opacity:1;transform:none;transition:none}
 }
 
-/* ===== CASE STUDY (scoped to #case-study) ===== */
-#case-study{background:#f3eee6}
-#case-study .eyebrow{color:#829D7F}
-#case-study .cs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:10px}
-#case-study .cs-card{background:var(--ivory);border:1px solid var(--line);border-radius:24px;padding:30px}
-#case-study .cs-card h3{font-size:22px;margin-bottom:14px;color:var(--sage-dark)}
-#case-study .cs-card p{color:var(--ink-soft);font-size:15px}
-#case-study .cs-card p+p{margin-top:12px}
-#case-study .cs-card ul{margin:0;padding-left:18px;color:var(--ink-soft);font-size:15px;line-height:1.6}
-#case-study .cs-card li+li{margin-top:10px}
-#case-study .cs-client{color:var(--ink)}
-#case-study .cs-note{margin-top:14px;font-size:12px;letter-spacing:.02em;color:var(--gold-deep);font-weight:700;text-transform:uppercase}
-#case-study .cs-tags{display:flex;flex-wrap:wrap;gap:8px}
-#case-study .cs-tag{padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid var(--line);font-weight:700;font-size:12px}
-#case-study .cs-media{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-#case-study .cs-shot{border:1px dashed var(--line);border-radius:20px;min-height:200px;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--gold-deep);font-weight:700;font-size:13px;background:rgba(255,255,255,.4)}
-@media(max-width:900px){
- #case-study .cs-grid{grid-template-columns:1fr}
- #case-study .cs-media{grid-template-columns:1fr}
-}
 </style>
 </head>
 <body>
@@ -358,54 +338,6 @@ footer{background:var(--ink);color:var(--ivory);padding:60px 0 25px}.footer-top{
   </div>
 </section>
 
-<section class="section" id="case-study">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div>
-        <div class="eyebrow">Case study</div>
-        <h2>A website, a CRM, and the automation between them.</h2>
-        <p>[NEEDS ONE-LINE PROJECT SUMMARY]</p>
-      </div>
-    </div>
-
-    <div class="cs-grid reveal">
-      <div class="cs-card">
-        <h3>The project</h3>
-        <p class="cs-client"><strong>Client:</strong> [NEEDS CLIENT NAME &mdash; or "Confidential Client" if anonymized]</p>
-        <p>[NEEDS ONE-LINE PROJECT SUMMARY]</p>
-      </div>
-
-      <div class="cs-card">
-        <h3>What was built</h3>
-        <ul>
-          <li><strong>Website</strong> &mdash; a static marketing site (HTML/CSS/JS) with an AI chat assistant embedded in the page.</li>
-          <li><strong>CRM</strong> &mdash; a single-user web app: a leads list with a New &rarr; Contacted &rarr; Booked &rarr; Closed pipeline, lead detail showing the full AI chat transcript plus private notes, a dashboard, CSV export, lead merge/dedupe, and scheduled email campaigns targeting lead segments.</li>
-          <li><strong>Automation workflow</strong> &mdash; n8n flows connecting the three: website chat messages run through an AI model and post into the CRM (matching a lead by email, then phone, then chat session id), and Google Calendar bookings post back to automatically mark the matching lead &ldquo;Booked&rdquo;.</li>
-        </ul>
-        <p class="cs-note">[CONFIRM SCOPE &mdash; the three items above are drawn from the funnelsbymae-crm repo; edit them to match exactly what was delivered on this engagement]</p>
-      </div>
-
-      <div class="cs-card">
-        <h3>Stack</h3>
-        <div class="cs-tags">
-          <span class="cs-tag">Next.js 15</span><span class="cs-tag">React 19</span><span class="cs-tag">TypeScript</span><span class="cs-tag">PostgreSQL</span><span class="cs-tag">Prisma</span><span class="cs-tag">n8n</span><span class="cs-tag">Google Gemini</span><span class="cs-tag">Google Calendar API</span><span class="cs-tag">Railway</span><span class="cs-tag">Vercel</span>
-        </div>
-        <p class="cs-note">[CONFIRM &mdash; stack pulled from the funnelsbymae-crm repo (TECH_STACK.md); trim anything that was not part of this client's build]</p>
-      </div>
-
-      <div class="cs-card">
-        <h3>Results</h3>
-        <p>[NEEDS RESULTS / METRICS &mdash; leave this empty if there are none to report; do not estimate or round]</p>
-      </div>
-    </div>
-
-    <div class="cs-media reveal">
-      <div class="cs-shot">[NEEDS SCREENSHOT 1 &mdash; file path]</div>
-      <div class="cs-shot">[NEEDS SCREENSHOT 2 &mdash; file path]</div>
-      <div class="cs-shot">[NEEDS SCREENSHOT 3 &mdash; file path]</div>
-    </div>
-  </div>
-</section>
 
 <section class="section process" id="process">
   <div class="wrap">
