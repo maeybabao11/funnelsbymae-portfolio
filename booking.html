@@ -167,7 +167,7 @@ html[data-theme="dark"] .theme-toggle .icon-moon{ display:block; }
   pointer-events:none;
   opacity:var(--aurora-intensity);
 }
-section, footer{ position:relative; z-index:1; }
+section, footer, main{ position:relative; z-index:1; }
 
 .page-aurora-topglow{
   position:absolute; inset:0;
@@ -224,6 +224,34 @@ section, footer{ position:relative; z-index:1; }
   flex:1;
   padding-bottom:96px;
 }
+
+.booking-summary{
+  display:none;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--bg-elevated);
+  padding:20px 24px;
+  margin-bottom:20px;
+  box-shadow:var(--shadow);
+}
+.booking-summary.is-visible{ display:block; }
+.booking-summary p{ color:var(--text-dim); font-size:0.92rem; margin-bottom:14px; }
+.booking-summary-fields{ display:flex; flex-wrap:wrap; gap:10px; }
+.booking-summary-field{
+  display:flex; align-items:center; gap:10px;
+  border:1px solid var(--border); border-radius:100px;
+  padding:8px 8px 8px 16px;
+  font-size:0.88rem;
+  background:var(--bg-inset);
+}
+.booking-summary-field strong{ color:var(--text-faint); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; }
+.booking-copy-btn{
+  border:1px solid var(--border); background:var(--bg-elevated); color:var(--text);
+  border-radius:100px; padding:5px 12px; font-size:0.78rem; font-weight:600; cursor:pointer;
+  transition:border-color var(--transition), color var(--transition);
+}
+.booking-copy-btn:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
+.booking-copy-btn.copied{ border-color:var(--accent-ink); color:var(--accent-ink); }
 
 .booking-frame-card{
   border:1px solid var(--border);
@@ -314,6 +342,10 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
 <!-- SECTION: Booking embed -->
 <main class="booking-main">
   <div class="wrap">
+    <div class="booking-summary" id="bookingSummary">
+      <p>We've already got this from you — Google's form below doesn't accept it automatically, so just tap "Copy" and paste into each field when you get there.</p>
+      <div class="booking-summary-fields" id="bookingSummaryFields"></div>
+    </div>
     <div class="booking-frame-card">
       <iframe
         id="bookingFrame"
@@ -387,6 +419,62 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
   /* ---------- Footer year ---------- */
   var yearEl = document.getElementById('year');
   if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---------- Prefilled-info summary (Google's scheduler has no prefill
+     API and the iframe is cross-origin, so we can't fill its form for the
+     visitor — this just saves them looking the details up again). ---------- */
+  var FIELD_LABELS = { name: 'Name', email: 'Email', phone: 'Phone' };
+  var params = new URLSearchParams(window.location.search);
+  var summaryEl = document.getElementById('bookingSummary');
+  var fieldsEl = document.getElementById('bookingSummaryFields');
+
+  var hasAny = false;
+  Object.keys(FIELD_LABELS).forEach(function(key){
+    var value = (params.get(key) || '').trim();
+    if(!value) return;
+    hasAny = true;
+
+    var field = document.createElement('div');
+    field.className = 'booking-summary-field';
+
+    var strong = document.createElement('strong');
+    strong.textContent = FIELD_LABELS[key];
+    field.appendChild(strong);
+
+    var span = document.createElement('span');
+    span.textContent = value;
+    field.appendChild(span);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'booking-copy-btn';
+    btn.textContent = 'Copy';
+    btn.addEventListener('click', function(){
+      var restore = function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); };
+      var markCopied = function(){
+        btn.textContent = 'Copied';
+        btn.classList.add('copied');
+        setTimeout(restore, 1500);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(value).then(markCopied).catch(restore);
+      } else {
+        var temp = document.createElement('textarea');
+        temp.value = value;
+        temp.style.position = 'fixed';
+        temp.style.opacity = '0';
+        document.body.appendChild(temp);
+        temp.select();
+        try{ document.execCommand('copy'); markCopied(); }catch(e){ restore(); }
+        document.body.removeChild(temp);
+      }
+    });
+    field.appendChild(btn);
+
+    fieldsEl.appendChild(field);
+  });
+
+  if(hasAny && summaryEl) summaryEl.classList.add('is-visible');
 
 })();
 </script>

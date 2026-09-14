@@ -1248,7 +1248,12 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
         body: JSON.stringify(payload)
       }).then(function(res){
         if(!res.ok) throw new Error('Webhook request failed');
-        window.location.href = BOOKING_REDIRECT_URL;
+        var q = new URLSearchParams({
+          name: payload.fullName,
+          email: payload.email,
+          phone: payload.phone
+        });
+        window.location.href = BOOKING_REDIRECT_URL + '?' + q.toString();
       }).catch(function(){
         bookingError.textContent = 'Something went wrong saving your details. Please try again, or reach out directly.';
         bookingError.hidden = false;
