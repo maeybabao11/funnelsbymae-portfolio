@@ -225,50 +225,12 @@ section, footer, main{ position:relative; z-index:1; }
   padding-bottom:96px;
 }
 
-.booking-summary{
-  display:none;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:var(--bg-elevated);
-  padding:20px 24px;
-  margin-bottom:20px;
-  box-shadow:var(--shadow);
-}
-.booking-summary.is-visible{ display:block; }
-.booking-summary p{ color:var(--text-dim); font-size:0.92rem; margin-bottom:14px; }
-.booking-summary-fields{ display:flex; flex-wrap:wrap; gap:10px; }
-.booking-summary-field{
-  display:flex; align-items:center; gap:10px;
-  border:1px solid var(--border); border-radius:100px;
-  padding:8px 8px 8px 16px;
-  font-size:0.88rem;
-  background:var(--bg-inset);
-}
-.booking-summary-field strong{ color:var(--text-faint); font-weight:600; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; }
-.booking-copy-btn{
-  border:1px solid var(--border); background:var(--bg-elevated); color:var(--text);
-  border-radius:100px; padding:5px 12px; font-size:0.78rem; font-weight:600; cursor:pointer;
-  transition:border-color var(--transition), color var(--transition);
-}
-.booking-copy-btn:hover{ border-color:var(--accent-ink); color:var(--accent-ink); }
-.booking-copy-btn.copied{ border-color:var(--accent-ink); color:var(--accent-ink); }
-
-.booking-frame-card{
+.cal-embed-card{
   border:1px solid var(--border);
   border-radius:20px;
   background:var(--bg-elevated);
   box-shadow:var(--shadow);
   overflow:hidden;
-}
-.booking-frame-card iframe{
-  display:block;
-  width:100%;
-  height:720px;
-  border:0;
-  background:var(--bg-elevated);
-}
-@media (max-width:640px){
-  .booking-frame-card iframe{ height:820px; }
 }
 
 .booking-fallback{
@@ -290,17 +252,6 @@ section, footer, main{ position:relative; z-index:1; }
   font-size:0.85rem;
 }
 .booking-note svg{ width:16px; height:16px; flex-shrink:0; }
-
-.booking-continue{
-  margin-top:28px;
-  border:1px solid var(--border);
-  border-radius:16px;
-  background:var(--bg-elevated);
-  box-shadow:var(--shadow);
-  padding:24px;
-  text-align:center;
-}
-.booking-continue p{ color:var(--text-dim); font-size:0.92rem; margin-bottom:14px; }
 
 /* ============================================================
    FOOTER — identical to main site
@@ -353,33 +304,19 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
 <!-- SECTION: Booking embed -->
 <main class="booking-main">
   <div class="wrap">
-    <div class="booking-summary" id="bookingSummary">
-      <p>We've already got this from you — Google's form below doesn't accept it automatically, so just tap "Copy" and paste into each field when you get there.</p>
-      <div class="booking-summary-fields" id="bookingSummaryFields"></div>
-    </div>
-    <div class="booking-frame-card">
-      <iframe
-        id="bookingFrame"
-        src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ3Bm91mlMIc3Q0bgMhKPyNBodmz1MXU6rXgZMW-mtnF_Ey4eEjw446IMMteGTSUo8fsGMUxssDj?gv=true"
-        title="Book a discovery call — Google Calendar scheduling"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+    <div class="cal-embed-card">
+      <div id="cal-booking" style="width:100%; height:720px; overflow:auto;"></div>
       <noscript>
         <div class="booking-fallback">
           <p>To book a call, open the scheduler directly:</p>
-          <p><a href="https://calendar.app.google/kfynr9VEtc3raa218" target="_blank" rel="noopener">calendar.app.google/kfynr9VEtc3raa218</a></p>
+          <p><a href="https://cal.com/mae-gutierrez-srw9nb/30min" target="_blank" rel="noopener">cal.com/mae-gutierrez-srw9nb/30min</a></p>
         </div>
       </noscript>
     </div>
     <p class="booking-note">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
-      Having trouble with the calendar above? <a href="https://calendar.app.google/kfynr9VEtc3raa218" target="_blank" rel="noopener" style="color:var(--accent-ink); text-decoration:underline; margin-left:4px;">Open it in a new tab</a>.
+      Having trouble with the calendar above? <a href="https://cal.com/mae-gutierrez-srw9nb/30min" target="_blank" rel="noopener" style="color:var(--accent-ink); text-decoration:underline; margin-left:4px;">Open it in a new tab</a>.
     </p>
-    <div class="booking-continue">
-      <p>Already picked a time above and clicked "Book"?</p>
-      <a href="thank-you.html" class="btn btn-primary">Done Booking → Continue</a>
-    </div>
   </div>
 </main>
 
@@ -435,61 +372,71 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
   var yearEl = document.getElementById('year');
   if(yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- Prefilled-info summary (Google's scheduler has no prefill
-     API and the iframe is cross-origin, so we can't fill its form for the
-     visitor — this just saves them looking the details up again). ---------- */
-  var FIELD_LABELS = { name: 'Name', email: 'Email', phone: 'Phone' };
+  /* ---------- Cal.com embed: genuine prefill + auto-redirect on booking.
+     Unlike Google's scheduler, Cal.com's embed talks back to the parent
+     page (accepts name/email/notes to prefill its form, and fires a real
+     "bookingSuccessful" event we can listen to), so both problems the old
+     Google-iframe approach couldn't solve are solved natively here. ---------- */
+  var CAL_LINK = 'mae-gutierrez-srw9nb/30min';
   var params = new URLSearchParams(window.location.search);
-  var summaryEl = document.getElementById('bookingSummary');
-  var fieldsEl = document.getElementById('bookingSummaryFields');
 
-  var hasAny = false;
-  Object.keys(FIELD_LABELS).forEach(function(key){
-    var value = (params.get(key) || '').trim();
-    if(!value) return;
-    hasAny = true;
-
-    var field = document.createElement('div');
-    field.className = 'booking-summary-field';
-
-    var strong = document.createElement('strong');
-    strong.textContent = FIELD_LABELS[key];
-    field.appendChild(strong);
-
-    var span = document.createElement('span');
-    span.textContent = value;
-    field.appendChild(span);
-
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'booking-copy-btn';
-    btn.textContent = 'Copy';
-    btn.addEventListener('click', function(){
-      var restore = function(){ btn.textContent = 'Copy'; btn.classList.remove('copied'); };
-      var markCopied = function(){
-        btn.textContent = 'Copied';
-        btn.classList.add('copied');
-        setTimeout(restore, 1500);
-      };
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(value).then(markCopied).catch(restore);
-      } else {
-        var temp = document.createElement('textarea');
-        temp.value = value;
-        temp.style.position = 'fixed';
-        temp.style.opacity = '0';
-        document.body.appendChild(temp);
-        temp.select();
-        try{ document.execCommand('copy'); markCopied(); }catch(e){ restore(); }
-        document.body.removeChild(temp);
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
       }
-    });
-    field.appendChild(btn);
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else {
+          p(cal, ar);
+        }
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
 
-    fieldsEl.appendChild(field);
+  Cal("init", "booking", { origin: "https://cal.com" });
+
+  var calConfig = { theme: currentEffectiveTheme(), layout: "month_view" };
+  if (params.get('name')) calConfig.name = params.get('name');
+  if (params.get('email')) calConfig.email = params.get('email');
+  if (params.get('phone')) calConfig.notes = 'Phone: ' + params.get('phone');
+
+  Cal.ns.booking("inline", {
+    elementOrSelector: "#cal-booking",
+    calLink: CAL_LINK,
+    config: calConfig
   });
 
-  if(hasAny && summaryEl) summaryEl.classList.add('is-visible');
+  Cal.ns.booking("ui", {
+    cssVarsPerTheme: {
+      light: { "cal-brand": "#5C7510" },
+      dark: { "cal-brand": "#c8ff00" }
+    },
+    hideEventTypeDetails: false,
+    layout: "month_view"
+  });
+
+  Cal.ns.booking("on", {
+    action: "bookingSuccessful",
+    callback: function () {
+      window.location.href = 'thank-you.html';
+    }
+  });
 
 })();
 </script>
