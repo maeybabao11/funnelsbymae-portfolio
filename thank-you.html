@@ -3,109 +3,403 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're All Set — Funnels by Mae</title>
+<title>You're Booked · MAE</title>
+<meta name="description" content="Your discovery call with MAE is booked — here's what happens next.">
+
+<!-- Google Fonts: Host Grotesk (matches the main portfolio's type system) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
+/* ============================================================
+   ROOT / THEME TOKENS — copied verbatim from index.html / booking.html
+   so this page stays in lockstep with the main site's branding.
+   ============================================================ */
 :root{
-  --sage:#91AB8E; --sage-2:#A8BEA5; --sage-dark:#718A6F;
-  --ivory:#FFFCF7; --gold:#FFE48F; --gold-deep:#D4AF37;
-  --ink:#2A2420; --ink-soft:#514A42; --white:#fff;
-  --line:rgba(42,36,32,.13); --radius:22px;
-}
-*{box-sizing:border-box}
-body{margin:0;background:#829D7F;color:#20231F;font-family:"Source Sans 3",sans-serif}
-.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
-nav{position:absolute;top:0;left:0;right:0;z-index:5;padding:28px 0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.logo{width:150px;display:block}
-.nav-link{font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:#fff;text-decoration:none}
-.hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 110px;position:relative;overflow:hidden;background:radial-gradient(circle at 82% 18%,rgba(145,171,142,.25),transparent 30%),linear-gradient(135deg,#829D7F 0%,#829D7F 100%)}
+  color-scheme: light;
+  --bg: #f7f7f5;
+  --bg-elevated: #ffffff;
+  --bg-inset: #eeeeec;
+  --text: #14161a;
+  --text-dim: #52565e;
+  --text-faint: #8b8f97;
+  --border: #dcdcd8;
+  --border-strong: #c3c3bd;
+  --accent: #5C7510;
+  --accent-text: #ffffff;
+  --accent-ink: #5C7510;
+  --accent-soft: rgba(92,117,16,0.12);
+  --grid-line: rgba(20,22,26,0.06);
+  --shadow: 0 20px 60px rgba(20,22,26,0.08);
+  --success: #1f9d63;
 
-.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:center;position:relative;z-index:1}
-.kicker,.eyebrow{font-family:Poppins,sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:13px;font-weight:700;color:#829D7F}
-h1,h2{font-family:Poppins,sans-serif;margin:0;letter-spacing:-.04em}
-h1{font-size:clamp(42px,6vw,72px);line-height:.98;max-width:760px;color:#fff}
-h1 em{font-style:normal;color:#FFE48F}
-.lede{font-size:17px;line-height:1.7;color:#fff;max-width:590px;margin:24px 0 0}
-.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;border-radius:999px;padding:14px 22px;font-family:Poppins,sans-serif;font-size:13px;font-weight:700;transition:.25s ease}
-.btn-dark{background:#20231F;color:#fff}
-.btn-dark:hover{background:#829D7F;transform:scale(1.04)}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.card{background:rgba(255,255,255,.62);border:1px solid rgba(32,35,31,.08);border-radius:28px;padding:44px;box-shadow:0 25px 70px rgba(32,35,31,.09);backdrop-filter:blur(8px)}
-.check{display:flex;gap:14px;align-items:flex-start;margin-top:22px}
-.check-icon{width:30px;height:30px;flex:0 0 30px;border-radius:50%;background:#829D7F;color:white;display:grid;place-items:center;font-family:Poppins,sans-serif;font-weight:700}
-.check strong{font-family:Poppins,sans-serif;font-size:14px;color:#829D7F}
-.check span{display:block;color:#20231F;font-size:14px;line-height:1.55;margin-top:3px}
-.footer{position:relative;background:#829D7F;padding:35px 0;color:white;z-index:2}
-.footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:13px}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.show{opacity:1;transform:none}
-@media(max-width:800px){
-.wrap{width:min(100% - 32px,600px)}
-.grid{grid-template-columns:1fr;gap:28px}
-.hero{padding:125px 0 100px}
+  --aurora-intensity: 0.7;
+  --btn-glow: #5C7510B3;
 
-h1{font-size:clamp(40px,11vw,58px)}
-.card{padding:30px}
-.footer-inner{flex-direction:column;align-items:flex-start}
-nav{padding:20px 0}
+  --font-head: 'Host Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Host Grotesk', 'Segoe UI', sans-serif;
+
+  --maxw: 1180px;
+  --transition: 220ms cubic-bezier(.4,0,.2,1);
 }
-@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.btn{transition:none}}
+
+html[data-theme="dark"]{
+  color-scheme: dark;
+  --bg: #01051e;
+  --bg-elevated: #0b1030;
+  --bg-inset: #0e1338;
+  --text: #f3f3f1;
+  --text-dim: #a4a7ae;
+  --text-faint: #6b6e76;
+  --border: #262c4a;
+  --border-strong: #383f63;
+  --accent: #c8ff00;
+  --accent-text: #01051e;
+  --accent-ink: #c8ff00;
+  --accent-soft: rgba(200,255,0,0.1);
+  --grid-line: rgba(243,243,241,0.05);
+  --shadow: 0 20px 60px rgba(0,0,0,0.45);
+  --success: #3ddb92;
+
+  --aurora-intensity: 1;
+  --btn-glow: #D8FF00B3;
+}
+
+@media (prefers-color-scheme: dark){
+  html:not([data-theme="light"]):not([data-theme="dark"]){
+    color-scheme: dark;
+    --bg: #01051e;
+    --bg-elevated: #0b1030;
+    --bg-inset: #0e1338;
+    --text: #f3f3f1;
+    --text-dim: #a4a7ae;
+    --text-faint: #6b6e76;
+    --border: #262c4a;
+    --border-strong: #383f63;
+    --accent: #c8ff00;
+    --accent-text: #01051e;
+    --accent-ink: #c8ff00;
+    --accent-soft: rgba(200,255,0,0.1);
+    --grid-line: rgba(243,243,241,0.05);
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
+    --success: #3ddb92;
+
+    --aurora-intensity: 1;
+    --btn-glow: #D8FF00B3;
+  }
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  transition: background var(--transition), color var(--transition);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+img,svg{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 32px; }
+section, footer, main{ position:relative; z-index:1; }
+h1,h2,h3,h4{ font-family:var(--font-head); font-weight:500; letter-spacing:-0.02em; }
+
+/* ============================================================
+   NAV — identical to main site
+   ============================================================ */
+header.nav{
+  position:sticky; top:16px; z-index:100;
+  max-width:var(--maxw);
+  width:calc(100% - 48px);
+  margin:16px auto 0;
+  border-radius:100px;
+  background:color-mix(in srgb, var(--bg-elevated) 88%, transparent);
+  backdrop-filter:blur(14px);
+  border:1px solid var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,0.14);
+}
+.nav-inner{
+  padding:14px 26px;
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+}
+.logo{
+  font-family:var(--font-head); font-weight:700; font-size:1.25rem;
+  letter-spacing:0.04em;
+}
+.nav-actions{ display:flex; align-items:center; gap:14px; }
+
+.theme-toggle{
+  width:40px; height:40px; border-radius:10px;
+  border:1px solid var(--border); background:var(--bg-elevated);
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  color:var(--text); transition:border-color var(--transition), transform var(--transition);
+}
+.theme-toggle:hover{ border-color:var(--border-strong); transform:translateY(-1px); }
+.theme-toggle svg{ width:18px; height:18px; }
+.theme-toggle .icon-moon{ display:none; }
+html[data-theme="dark"] .theme-toggle .icon-sun{ display:none; }
+html[data-theme="dark"] .theme-toggle .icon-moon{ display:block; }
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:12px 24px; border-radius:100px; font-size:0.92rem; font-weight:600;
+  cursor:pointer; border:1px solid transparent;
+  transition:transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition), box-shadow 420ms ease;
+  white-space:nowrap;
+}
+.btn:hover, .btn:focus-visible{ box-shadow:0 0 24px var(--btn-glow); }
+.btn-primary{ background:var(--accent); color:var(--accent-text); }
+.btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.08); }
+.btn-ghost{ background:transparent; color:var(--text); border-color:var(--border); }
+.btn-ghost:hover{ border-color:var(--border-strong); transform:translateY(-2px); }
+
+/* ============================================================
+   PAGE-WIDE AURORA BACKGROUND — identical to main site
+   ============================================================ */
+.page-aurora{
+  position:fixed; inset:0; z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  opacity:var(--aurora-intensity);
+}
+
+.page-aurora-topglow{
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 0%, oklch(0.22 0.05 150 / 0.6), transparent 60%);
+}
+.page-aurora-grid{
+  position:absolute; inset:0;
+  background-image: radial-gradient(rgba(255,255,255,1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity:0.12;
+}
+.page-aurora-vignette{
+  position:absolute; inset:0;
+  background:radial-gradient(ellipse at center, transparent 40%, oklch(0.10 0.02 150 / 0.6));
+}
+
+/* ============================================================
+   SECTION HEADERS (shared)
+   ============================================================ */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-head); font-size:0.78rem; letter-spacing:0.14em;
+  color:var(--accent-ink); text-transform:uppercase; margin-bottom:24px;
+  padding:6px 14px; border:1px solid var(--border); border-radius:100px;
+  background:var(--accent-soft);
+}
+.eyebrow::before{
+  content:''; width:6px; height:6px; border-radius:50%; background:var(--accent);
+}
+
+/* ============================================================
+   THANK YOU PAGE
+   ============================================================ */
+.thankyou-main{
+  flex:1;
+  display:flex;
+  align-items:center;
+  padding:56px 0 96px;
+}
+.thankyou-card{
+  max-width:640px;
+  margin:0 auto;
+  text-align:center;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--bg-elevated);
+  box-shadow:var(--shadow);
+  padding:56px 40px;
+}
+@media (max-width:640px){ .thankyou-card{ padding:40px 24px; } }
+
+.thankyou-icon{
+  width:64px; height:64px; border-radius:50%;
+  background:var(--accent-soft);
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 24px;
+  color:var(--accent-ink);
+}
+
+.thankyou-card h1{
+  font-size:clamp(1.7rem, 4vw, 2.4rem);
+  margin-bottom:14px;
+}
+.thankyou-card p{
+  color:var(--text-dim);
+  font-size:1.02rem;
+  max-width:46ch;
+  margin:0 auto 10px;
+}
+
+.thankyou-next{
+  text-align:left;
+  margin:32px 0;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:var(--bg-inset);
+  padding:22px 24px;
+}
+.thankyou-next h2{
+  font-size:0.78rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--accent-ink);
+  margin-bottom:14px;
+}
+.thankyou-next ol{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.thankyou-next li{
+  display:flex;
+  gap:12px;
+  color:var(--text-dim);
+  font-size:0.92rem;
+  line-height:1.5;
+}
+.thankyou-next li span{
+  flex-shrink:0;
+  width:22px; height:22px;
+  border-radius:50%;
+  background:var(--accent);
+  color:var(--accent-text);
+  font-size:0.75rem;
+  font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
+.thankyou-actions{
+  display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:28px;
+}
+
+/* ============================================================
+   FOOTER — identical to main site
+   ============================================================ */
+footer{ border-top:1px solid var(--border); padding:40px 0; }
+.footer-inner{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; }
+.footer-tag{ color:var(--text-faint); font-size:0.85rem; }
+.footer-links{ display:flex; gap:20px; }
+.footer-links a{ color:var(--text-faint); font-size:0.85rem; transition:color var(--transition); }
+.footer-links a:hover{ color:var(--text); }
+
+@media (max-width:640px){
+  header.nav{ width:calc(100% - 24px); border-radius:24px; }
+  .nav-inner{ padding:12px 16px; }
+}
 </style>
 </head>
 <body>
-<nav>
-  <div class="wrap nav-inner">
-    <a href="index.html"><img class="logo" src="https://res.cloudinary.com/xnfrqb5x/image/upload/v1786108620/FBM_-_Assets_rsfqxj.png" alt="Funnels by Mae"></a>
-    <a class="nav-link" href="index.html">Back to Funnels by Mae ↗</a>
+
+<!-- Page-wide aurora background — same construction as the main portfolio page -->
+<div class="page-aurora" aria-hidden="true">
+  <div class="page-aurora-topglow"></div>
+  <div class="page-aurora-grid"></div>
+  <div class="page-aurora-vignette"></div>
+</div>
+
+<!-- SECTION: Nav -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">MAE</a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+      </button>
+      <a href="index.html" class="btn btn-ghost">← Back to Site</a>
+    </div>
   </div>
-</nav>
+</header>
 
-<main class="hero">
-  <div class="wrap grid">
-    <section class="reveal">
-      <div class="kicker">You're all set</div>
-      <h1 style="margin-top:16px">YOUR STRATEGY CALL IS <em>BOOKED.</em></h1>
-      <p class="lede">Thanks for taking the first step. I'm looking forward to learning more about your business, your goals, and where your funnel can work harder for you.</p>
-      <div class="actions">
-        <a class="btn btn-dark" href="index.html">Back to Funnels by Mae ↗</a>
+<!-- SECTION: Confirmation -->
+<main class="thankyou-main">
+  <div class="wrap">
+    <div class="thankyou-card">
+      <div class="thankyou-icon">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
       </div>
-    </section>
+      <div class="eyebrow">MAE · Automation &amp; CRM Specialist</div>
+      <h1>You're booked!</h1>
+      <p>Thanks for grabbing a time — check your email for the calendar invite and Google Meet link.</p>
 
-    <aside class="card reveal">
-      <div class="eyebrow">What happens next</div>
-      <div class="check">
-        <div class="check-icon">1</div>
-        <div><strong>Check your inbox</strong><span>Look for the Google Calendar confirmation and make sure the appointment details are correct.</span></div>
+      <div class="thankyou-next">
+        <h2>What happens next</h2>
+        <ol>
+          <li><span>1</span> You'll get a confirmation email from Google Calendar with the call details and Meet link.</li>
+          <li><span>2</span> A reminder lands in your inbox 24 hours and 1 hour before the call, so it's easy to keep on your radar.</li>
+          <li><span>3</span> On the call, we'll go through what's not getting followed up on right now and whether an automated system makes sense for your business.</li>
+        </ol>
       </div>
-      <div class="check">
-        <div class="check-icon">2</div>
-        <div><strong>Add the call to your calendar</strong><span>Save the appointment so you have the time and meeting details ready.</span></div>
+
+      <div class="thankyou-actions">
+        <a href="index.html" class="btn btn-primary">Back to the Site</a>
+        <a href="index.html#work" class="btn btn-ghost">See My Work</a>
       </div>
-      <div class="check">
-        <div class="check-icon">3</div>
-        <div><strong>Come ready to talk funnels</strong><span>We'll look at your current setup, goals, and the biggest opportunity to improve your client journey.</span></div>
-      </div>
-    </aside>
+    </div>
   </div>
 </main>
 
-<footer class="footer">
+<!-- SECTION: Footer -->
+<footer>
   <div class="wrap footer-inner">
-    <span>© 2026 Funnels by Mae</span>
-    <span>Strategy · Design · Automation</span>
+    <div class="footer-tag">© <span id="year"></span> MAE · Automation &amp; CRM Specialist</div>
+    <div class="footer-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
   </div>
 </footer>
 
 <script>
-const reveals=document.querySelectorAll('.reveal');
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting) e.target.classList.add('show');
-  else e.target.classList.remove('show');
-}),{threshold:.12});
-reveals.forEach(x=>io.observe(x));
+(function(){
+  "use strict";
+
+  var root = document.documentElement;
+  var toggleBtn = document.getElementById('themeToggle');
+  var STORAGE_KEY = 'mae-theme';
+
+  function applyTheme(theme){
+    if(theme === 'light' || theme === 'dark'){
+      root.setAttribute('data-theme', theme);
+    } else {
+      root.removeAttribute('data-theme');
+    }
+  }
+
+  function currentEffectiveTheme(){
+    var explicit = root.getAttribute('data-theme');
+    if(explicit) return explicit;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  try{
+    var saved = localStorage.getItem(STORAGE_KEY);
+    if(saved) applyTheme(saved);
+  }catch(e){ /* localStorage unavailable — falls back to system preference */ }
+
+  if(toggleBtn){
+    toggleBtn.addEventListener('click', function(){
+      var next = currentEffectiveTheme() === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try{ localStorage.setItem(STORAGE_KEY, next); }catch(e){}
+    });
+  }
+
+  var yearEl = document.getElementById('year');
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+})();
 </script>
 </body>
 </html>
