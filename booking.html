@@ -411,10 +411,20 @@ footer{ border-top:1px solid var(--border); padding:40px 0; }
 
   Cal("init", "booking", { origin: "https://cal.com" });
 
+  /* The qualifying form collects local PH numbers like "09171234567", but
+     Cal.com's phone field only auto-detects the country (and formats
+     cleanly) from E.164 (+63...) - convert before handing it off. */
+  function toPHE164(raw){
+    var digits = raw.replace(/\D/g, '');
+    if(digits.indexOf('63') === 0) return '+' + digits;
+    if(digits.indexOf('0') === 0) return '+63' + digits.slice(1);
+    return digits ? '+63' + digits : '';
+  }
+
   var calConfig = { theme: currentEffectiveTheme(), layout: "month_view" };
   if (params.get('name')) calConfig.name = params.get('name');
   if (params.get('email')) calConfig.email = params.get('email');
-  if (params.get('phone')) calConfig.notes = 'Phone: ' + params.get('phone');
+  if (params.get('phone')) calConfig.attendeePhoneNumber = toPHE164(params.get('phone'));
 
   Cal.ns.booking("inline", {
     elementOrSelector: "#cal-booking",
